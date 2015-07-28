@@ -112,10 +112,12 @@ class CardcastAPI(CardcastAPIBase):
 
     def search_iter(self, name=None, author=None, category=None, offset=0,
                     limit=None):
-        s = asyncio.async(self.search(name, author, category, offset, limit))
+        s = asyncio.run_until_complete(self.search(name, author, category,
+                                                   offset, limit))
 
         while s.count > 0:
             yield s
 
             offset += s.count
-            s = asyncio.async(self.search(name, author, category, offset, limit))
+            s = asyncio.run_until_complete(self.search(name, author, category,
+                                                       offset, limit))
