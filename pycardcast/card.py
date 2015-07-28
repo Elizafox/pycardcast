@@ -22,16 +22,6 @@ class Card:
         self.cid = cid
         self.text = text
 
-    @classmethod
-    def from_json(cls, data):
-        if isinstance(data, list):
-            return [cls.from_json(d) for d in data]
-
-        if "id" in data and data["id"] == "not_found":
-            raise CardNotFoundError(data["message"])
-
-        return cls(isoformat(data["created_at"]), data["cid"], data["text"])
-
 
 class BlackCard(Card):
 
@@ -53,6 +43,16 @@ class BlackCard(Card):
 
         super().__init__(created, cid, text)
 
+    @classmethod
+    def from_json(cls, data):
+        if "calls" in data:
+            return [cls.from_json(cls, c) for c in data["calls"]]
+
+        if "id" in data and data["id"] == "not_found":
+            raise CardNotFoundError(data["message"])
+
+        return cls(isoformat(data["created_at"]), data["cid"], data["text"])
+
     def __hash__(self):
         return hash((self.pick, self.created, self.cid, self.text)) + 1
 
@@ -62,6 +62,16 @@ class BlackCard(Card):
 
 
 class WhiteCard(Card):
+    
+    @classmethod
+    def from_json(cls, data):
+        if "responses" in data:
+            return [cls.from_json(cls, c) for c in data["responses"]]
+
+        if "id" in data and data["id"] == "not_found":
+            raise CardNotFoundError(data["message"])
+
+        return cls(isoformat(data["created_at"]), data["cid"], data["text"])
 
     def __hash__(self):
         return hash((self.created, self.cid, self.text)) - 1
