@@ -39,7 +39,7 @@ class BlackCard(Card):
         if text[-1] == '' and text[-2][-1] != ' ':
             text.pop()
 
-        text = "_____".join(filter(text, None))
+        text = "_____".join(filter(None, text))
 
         super().__init__(created, cid, text)
 
