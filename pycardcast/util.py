@@ -1,6 +1,10 @@
-# COPYRIGHT
+# Copyright © 2015 Elizabeth Myers.
+# All rights reserved.
+# This file is part of the pycardcast project. See LICENSE in the root
+# directory for licensing information.
 
 from datetime import datetime
+
 
 def isoformat(date):
     """Small, unpedantic ISO format parser (as used by Cardcast)."""

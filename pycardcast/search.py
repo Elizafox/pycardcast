@@ -1,4 +1,7 @@
-# COPYRIGHT
+# Copyright © 2015 Elizabeth Myers.
+# All rights reserved.
+# This file is part of the pycardcast project. See LICENSE in the root
+# directory for licensing information.
 
 from pycardcast import NotFoundError, RetrievalError
 from pycardcast.deck import DeckInfo
@@ -30,4 +33,3 @@ class SearchReturn:
         data = [DeckInfo.from_json(d) for d in results["data"]]
 
         return cls(totaldecks, count, offset, data)
-

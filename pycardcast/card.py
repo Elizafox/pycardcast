@@ -1,4 +1,7 @@
-# COPYRIGHT
+# Copyright © 2015 Elizabeth Myers.
+# All rights reserved.
+# This file is part of the pycardcast project. See LICENSE in the root
+# directory for licensing information.
 
 from pycardcast.util import isoformat
 from pycardcast import NotFoundError, RetrievalError
@@ -31,6 +34,7 @@ class Card:
 
 
 class BlackCard(Card):
+
     def __init__(self, created, cid, text, pick=None):
         # Remove blanks
         if pick is None:
