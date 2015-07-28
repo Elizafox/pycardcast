@@ -27,7 +27,7 @@ class Card:
         if "id" in data and data["id"] == "not_found":
             raise CardNotFoundError(data["message"])
 
-        return cls(isoformat(data["created"]), data["cid"], data["text"])
+        return cls(isoformat(data["created_at"]), data["cid"], data["text"])
 
 
 class BlackCard(Card):
