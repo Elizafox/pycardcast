@@ -46,12 +46,12 @@ class BlackCard(Card):
     @classmethod
     def from_json(cls, data):
         if "calls" in data:
-            return [cls.from_json(cls, c) for c in data["calls"]]
+            return [cls.from_json(c) for c in data["calls"]]
 
-        if "id" in data and data["id"] == "not_found":
+        if data["id"] == "not_found":
             raise CardNotFoundError(data["message"])
 
-        return cls(isoformat(data["created_at"]), data["cid"], data["text"])
+        return cls(isoformat(data["created_at"]), data["id"], data["text"])
 
     def __hash__(self):
         return hash((self.pick, self.created, self.cid, self.text)) + 1
@@ -66,12 +66,12 @@ class WhiteCard(Card):
     @classmethod
     def from_json(cls, data):
         if "responses" in data:
-            return [cls.from_json(cls, c) for c in data["responses"]]
+            return [cls.from_json(c) for c in data["responses"]]
 
-        if "id" in data and data["id"] == "not_found":
+        if data["id"] == "not_found":
             raise CardNotFoundError(data["message"])
 
-        return cls(isoformat(data["created_at"]), data["cid"], data["text"])
+        return cls(isoformat(data["created_at"]), data["id"], data["text"])
 
     def __hash__(self):
         return hash((self.created, self.cid, self.text)) - 1
