@@ -80,6 +80,16 @@ class DeckInfo:
                    blacksample, whitesample, unlisted, author, copyright,
                    created, updated, rating)
 
+    def __repr__(self):
+        return ("DeckInfo(code={}, name={}, description={}, category={}, "
+                "blackcount={}, whitecount={}, blacksample={}, "
+                "whitesample={}, unlisted={}, author={}, copyright={}, "
+                "created={}, updated={}, rating={})".format(
+                    self.code, self.name, self.description, self.category,
+                    self.blackcount, self.whitecount, self.blacksample,
+                    self.whitesample, self.unlisted, self.author,
+                    self.copyright, self.created, self.updated, self.rating))
+
 
 class Deck:
 
@@ -102,3 +112,7 @@ class Deck:
             whitecards = []
 
         return cls(deckinfo, blackcards, whitecards)
+
+    def __repr__(self):
+        return "Deck(deckinfo={}, blackcards={}, whitecards={})".format(
+            self.deckinfo, self.blackcards, self.whitecards)
