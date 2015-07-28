@@ -33,3 +33,8 @@ class SearchReturn:
         data = [DeckInfo.from_json(d) for d in results["data"]]
 
         return cls(totaldecks, count, offset, data)
+
+    def __repr__(self):
+        return ("SearchReturn(totaldecks={}, count={}, offset={}, "
+                "data={}".format(self.totaldecks, self.count, self.offset,
+                                 self.data))
