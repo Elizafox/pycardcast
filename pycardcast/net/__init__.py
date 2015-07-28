@@ -10,6 +10,9 @@ from urllib.parse import urlencode
 from pycardcast.deck import Deck
 
 
+__all__ = ["aiohttp", "requests"]
+
+
 class CardcastAPIBase(metaclass=abc.ABCMeta):
     """The base for all Cardcast network API's."""
 
