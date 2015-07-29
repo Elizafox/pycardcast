@@ -16,16 +16,42 @@ class CardRetrievalError(RetrievalError):
 
 
 class Card:
+    """The base card object."""
 
     def __init__(self, created, cid, text):
+        """Create a card object.
+
+        :param created:
+            a ``datetime`` object representing when the card was created.
+
+        :param cid:
+            The unique ID of the card.
+
+        :param text:
+            The text on the face of the card.
+        """
         self.created = created
         self.cid = cid
         self.text = text
 
 
 class BlackCard(Card):
-
+    """A black card object."""
     def __init__(self, created, cid, text, pick=None):
+        """Create a blackcard object.
+
+        :param created:
+            a ``datetime`` object representing when the card was created.
+
+        :param cid:
+            The unique ID of the card.
+
+        :param text:
+            The text on the face of the card.
+
+        :param pick:
+            How many white cards are picked for this card.
+        """
         # Remove blanks
         if pick is None:
             self.pick = len(text) - 1
@@ -62,7 +88,8 @@ class BlackCard(Card):
 
 
 class WhiteCard(Card):
-    
+    """A white card object."""
+
     @classmethod
     def from_json(cls, data):
         if "responses" in data:
