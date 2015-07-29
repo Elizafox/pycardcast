@@ -6,7 +6,7 @@ backends.
 # Terms of use
 
 This code itself is licensed under the WTFPL. However, Cardcast is an external
-service (of which I have *no* affiliation in any capacity), and you must obey
+service (of which I have **no** affiliation in any capacity), and you must obey
 their terms of service. Failure to abide could result in the API being locked
 down, or your access revoked. Please, just follow the rules, for everyone's
 sake.
