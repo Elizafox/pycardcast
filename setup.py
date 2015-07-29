@@ -16,6 +16,10 @@ setup(name="pycardcast",
       author_email="elizabeth@interlinked.me",
       url="https://github.com/Elizafox/pycardcast",
       packages=["pycardcast", "pycardcast.net"],
+      extras_require = {
+          "aiohttp": ["aiohttp >= 0.17.0a0"],
+          "requests": ["requests >= 2.7.0"],
+      },
       classifiers=[
           "Development Status :: 2 - Pre-Alpha",
           "Intended Audience :: Developers",
