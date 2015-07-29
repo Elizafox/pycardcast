@@ -3,6 +3,11 @@
 # This file is part of the pycardcast project. See LICENSE in the root
 # directory for licensing information.
 
+"""Various card-related structures. The most interesting parts to most
+developers are likely to be :py:class:`~pycardcast.card.BlackCard` and
+:py:class:`~pycardcast.card.WhiteCard`.
+"""
+
 from pycardcast.util import isoformat
 from pycardcast import NotFoundError, RetrievalError
 
