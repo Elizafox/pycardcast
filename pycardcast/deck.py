@@ -3,6 +3,13 @@
 # This file is part of the pycardcast project. See LICENSE in the root
 # directory for licensing information.
 
+"""Deck related objects. This includes deck-related exception classes
+(:py:class:`~pycardcast.deck.DeckInfoNotFoundError` and
+:py:class:`~pycardcast.deck.DeckInfoRetrievalError`), the deck metadata
+storage class (:py:class:`~pycardcast.deck.DeckInfo`), and the class that
+stores metadata and cards (:py:class:`~pycardcast.deck.Deck`).
+"""
+
 from collections import namedtuple
 
 from pycardcast.util import isoformat
@@ -11,7 +18,10 @@ from pycardcast import NotFoundError, RetrievalError
 
 
 Author = namedtuple("Author", "username id")
+"""The author of a deck."""
+
 Copyright = namedtuple("Copyright", "external license")
+"""The copyright of the deck."""
 
 
 class DeckInfoNotFoundError(NotFoundError):
@@ -23,10 +33,63 @@ class DeckInfoRetrievalError(RetrievalError):
 
 
 class DeckInfo:
+    """The class that stores deck-related metadata."""
 
     def __init__(self, code, name, description, category, blackcount,
                  whitecount, blacksample, whitesample, unlisted, author,
                  copyright, created, updated, rating):
+        """Initalise the DeckInfo class.
+
+        :param code:
+            The Cardcast 5-alphanumeric code for this deck.
+
+        :param name:
+            The name of this deck.
+
+        :param description:
+            The description of this deck. May be ``None`` for nonexistent.
+
+        :param category:
+            The category this deck is in.
+
+        :param blackcount:
+            An integer with the number of black cards in the deck.
+
+        :param whitecount:
+            An integer with the number of white cards in the deck.
+
+        :param blacksample:
+            A sampling of black cards from the deck. Usually only set for deck
+            information returned after a search.
+
+        :param whitesample:
+            A sampling of white cards from the deck. Usually only set for deck
+            information returned after a search.
+
+        :param unlisted:
+            Whether or not this deck is shown in the search listings. Always
+            set to ``True`` for decks found in a search.
+
+        :param author:
+            A :py:class:`~pycardcast.deck.Author` named tuple that contains
+            the author's name and their unique ID.
+
+        :param copyright:
+            A :py:class:`~pycardcast.deck.Copyright` named tuple that
+            specifies if a copyright is external or not, and if so, where the
+            copyright can be found.
+
+        :param created:
+            A ``datetime`` object containing the creation date and time of
+            this deck.
+
+        :param updated:
+            A ``datetime`` object containing the date and time this deck was
+            last updated.
+
+        :param rating:
+            A ``float`` describing the rating of this deck between 0 and 5.
+        """
         self.code = code
         self.name = name
         self.description = description
@@ -92,8 +155,22 @@ class DeckInfo:
 
 
 class Deck:
-
+    """A deck object that contains metadata and cards."""
     def __init__(self, deckinfo, blackcards, whitecards):
+        """Initalise the deck object.
+
+        :param deckinfo:
+            A :py:class:`~pycardcast.deck.DeckInfo` object with the deck's
+            metadata.
+
+        :param blackcards:
+            A list of :py:class:`~pycardcast.card.BlackCard`s this deck
+            contains.
+
+        :param whitecards:
+            A list of :py:class:`~pycardcast.card.WhiteCard`s this deck
+            contains.
+        """
         self.deckinfo = deckinfo
         self.blackcards = blackcards
         self.whitecards = whitecards
