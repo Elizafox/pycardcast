@@ -33,6 +33,7 @@ class DeckInfoRetrievalError(RetrievalError):
 
 
 class DeckInfo:
+    
     """The class that stores deck-related metadata."""
 
     def __init__(self, code, name, description, category, blackcount,
@@ -155,7 +156,9 @@ class DeckInfo:
 
 
 class Deck:
+    
     """A deck object that contains metadata and cards."""
+
     def __init__(self, deckinfo, blackcards, whitecards):
         """Initalise the deck object.
 
